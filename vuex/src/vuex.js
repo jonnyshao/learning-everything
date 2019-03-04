@@ -77,7 +77,7 @@ class Store {
     constructor(options) {
         let state = options.state; //{count:100}
         this.getters = {}
-        this.mutatiosn = {}
+        this.mutations = {}
         this.mutations = {}
         this.actions = {}
         // 什么样的属性可以实例双向 有get和 set
