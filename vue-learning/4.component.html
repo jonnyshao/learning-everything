@@ -8,26 +8,29 @@
 </head>
 <body>
     <div id="app">
+        <template v-for="i in 5">
+            <div ref="my">my element</div>
+        </template>
+        <my-component ref="con"></my-component>
     </div>
-    <input type="radio" id="ipt" onclick="fn()">
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
-        function fn(params) {
-            console.log(document.querySelector('#ipt').value)
-        }
         let vm = new Vue({
             el:'#app',
             data: {
                 info:{},
                 arr:[1,2,4]
+            },
+            mounted(){
+                console.log(this.$refs.my)
+                console.log(this.$refs.con)
+            },
+            components:{
+                'MyComponent':{
+                    template: `<div>my-component</div>`
+                }
             }
         })
-        vm.arr = [2,3,4] // 数据更新是异步的
-        // 视图更新后
-        vm.$nextTick(() => {
-            console.log(vm.$el.innerHTML)
-        })
-        // console.log(vm.$el.innerHTML) // [1,2,4]
     </script>
 </body>
 </html>
