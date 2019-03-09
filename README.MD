@@ -2,4 +2,4 @@
  - add monitor
  - add vuex simple
  - add webpack4 study note
- - add vue router
+ - add vue project
