@@ -1,48 +1,47 @@
 <template>
   <div id="app">
-    <ScrollBall color="deepkink" v-model="pos4" :target="600" ref="stop">红球</ScrollBall>
-    <ScrollBall color="deepkink" v-model="pos3" :target="500" ref="stop">红球</ScrollBall>
-    <ScrollBall color="red" :value="pos1" :target="500" @input="val => pos1 = val">红球</ScrollBall>
-    <ScrollBall color="green" :value="pos2" :target="500">绿球</ScrollBall>
-    <button @click="getPosition">获取球1的位置</button>
-    <button @click="stop">STOP</button>
+    <div class="nav nav-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div class="navbar-brand">
+            <span>管理</span>
+          </div>
+        </div>
+        <ul class="navbar-nav nav">
+          <li><router-link to="/home">首页</router-link></li>
+          <li><router-link to="/profile">个人中心</router-link></li>
+          <li><router-link to="/user">用户</router-link></li>
+          <li><router-link to="/login">登录</router-link></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <router-view></router-view>
+      <router-view name="name"></router-view>
+      <router-view name="version"></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import ScrollBall from '+/ScrollBall.vue'
-
+import 'bootstrap/dist/css/bootstrap.css'
 export default {
   name: 'app',
   data () {
     return {
-      pos1: 50,
-      pos2: 100,
-      pos3: 60,
-      pos4: 150
+
     }
   },
   components: {
-    ScrollBall
   },
   methods: {
-    getPosition () {
 
-    },
-    stop () {
-      this.$refs.stop.stop()
-    }
   }
 }
 </script>
 
 <style lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>

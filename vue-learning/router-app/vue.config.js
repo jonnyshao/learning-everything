@@ -8,7 +8,8 @@ module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
     // 可以获取到webpack的配置 在增加一些自己的配置
-    config.resolve.alias.set('+', path.resolve(__dirname, 'src/components/'))
+    config.resolve.alias.set('_c', path.resolve(__dirname, 'src/components/'))
+    config.resolve.alias.set('_v', path.resolve(__dirname, 'src/views/'))
   },
   configureWebpack:{ // webpack-merge
     
