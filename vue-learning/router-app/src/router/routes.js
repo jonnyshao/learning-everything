@@ -32,7 +32,10 @@ export default [
     children: [
       {
         path: '', 
-        component: () => import('_v/UserAdd.vue')
+        component: () => import('_v/UserAdd.vue'),
+        beforeEnter:(to, from, next) => {
+          
+        }
       },
       {
         path: 'add', 
