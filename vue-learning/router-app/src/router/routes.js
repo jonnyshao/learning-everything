@@ -34,7 +34,7 @@ export default [
         path: '', 
         component: () => import('_v/UserAdd.vue'),
         beforeEnter:(to, from, next) => {
-          
+          next()
         }
       },
       {
