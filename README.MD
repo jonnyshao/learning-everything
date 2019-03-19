@@ -3,3 +3,4 @@
  - add vuex simple
  - add webpack4 study note
  - add vue project
+ - add design patter
