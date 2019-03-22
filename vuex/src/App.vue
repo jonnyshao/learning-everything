@@ -1,29 +1,41 @@
 <template>
   <div id="app">
-    {{this.$store.state.count}}
-    {{this.$store.getters.newCount}}
-    {{this.$store.state.a.b.count}}
+    {{name}}
+    {{userName}}
+    {{u}}
     <button @click="change">add</button>
+    <div>
+      increment
+      {{count}}
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import {mapState,mapMutations} from 'vuex'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+
   },
   mounted () {
     console.log(this.$store)
   },
+  computed: {
+    // 等价于 this.$store.state.name
+    ...mapState(['name','count']),
+    // 取出modules 下的 user 中的userName state
+    ...mapState('user',['userName']),
+    ...mapState('user',{u: state => state.userName})
+  },
   methods:{
+    ...mapMutations(['increment']),
     change () {
-      this.$store.dispatch('change')
+      this['increment'](10)
     }
   }
 }
+// 在vuex中如何想使用模块 最好使用辅助方法，限制模块作用域
 </script>
 
 <style>
