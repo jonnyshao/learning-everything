@@ -7,6 +7,7 @@ import getters from './getters'
 import user from './modules/user'
 Vue.use(Vuex)
 export default new Vuex.Store({
+  strict: process.env.NODE_ENV !== 'production',
   state,
   actions,
   getters,
