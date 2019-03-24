@@ -1,7 +1,7 @@
-
 function Dep() {
   this.subscribe = []
 }
+
 // 订阅
 Dep.prototype.on = function (watcher) {
   this.subscribe.push(watcher)
@@ -14,6 +14,7 @@ Dep.prototype.notify = function () {
     h.update()
   })
 }
+
 // 观察者 (发布订阅) 观察者 被观察者
 function Watcher(vm, expr, cb) {
   this.vm = vm;
@@ -23,6 +24,7 @@ function Watcher(vm, expr, cb) {
   this.oldValue = this.getOldValue()
 
 }
+
 Watcher.prototype.getOldValue = function () {
   // vm.$data.person m.$data.name 一取值会调用observer get方法
   // 先把 watcher 实例放在Dep.target上 把这个观察者和数据关联起来
@@ -42,6 +44,7 @@ Watcher.prototype.update = function () {
 function Observer(data) {
   this.observer(data)
 }
+
 Observer.prototype.observer = function (data) {
   if (data && typeof data === 'object') {
     for (var key in data) {
@@ -62,7 +65,7 @@ Observer.prototype.defineReactive = function (data, key, value) {
     set: function (newVal) {
       // 新值与老的值不相等时再赋值
       if (value !== newVal) {
-        console.log('defineReactive~~~~',newVal)
+        console.log('defineReactive~~~~', newVal)
         self.observer(newVal)
         value = newVal
         dep.notify()
@@ -70,6 +73,7 @@ Observer.prototype.defineReactive = function (data, key, value) {
     }
   })
 }
+
 function Compiler(el, vm) {
   // 判断 el属性是不是一个元素 如果不是元素 那就获取他
   this.el = this.isElementNode(el) ? el : document.querySelector(el);
@@ -86,11 +90,12 @@ function Compiler(el, vm) {
   this.el.appendChild(frament)
 
 }
-Compiler.prototype.isElementNode = function(node) {
+
+Compiler.prototype.isElementNode = function (node) {
   // 是不是元素节点
   return node.nodeType === 1
 }
-Compiler.prototype.node2fragment = function(node) {
+Compiler.prototype.node2fragment = function (node) {
   // 创建文档碎片
   var fragment = document.createDocumentFragment();
   var firstChild;
@@ -153,12 +158,12 @@ var CompileUtil = {
     }, vm.$data)
   },
   setValue: function (vm, expr, value) { // vm.$data 'person.name' = 'Rayn'
-   expr.split('.').reduce(function (data, current, index, ary) {
-    if (index === ary.length - 1) {
-      return data[current] = value
-    }
-    return data[current]
-  }, vm.$data)
+    expr.split('.').reduce(function (data, current, index, ary) {
+      if (index === ary.length - 1) {
+        return data[current] = value
+      }
+      return data[current]
+    }, vm.$data)
   },
   // 解析v-mode这个指令
   model: function (node, expr, vm) {
@@ -192,7 +197,7 @@ var CompileUtil = {
     // 遍历表达式 将内容 重新替换成一个完整的内容 返还回去
     var _this = this;
     return expr.replace(/\{\{(.+?)\}\}/g, function () {
-      for (var len = arguments.length, args = new Array(len), key = 0; key < len; key ++) {
+      for (var len = arguments.length, args = new Array(len), key = 0; key < len; key++) {
         args[key] = arguments[key]
       }
       return _this.getValue(vm, args[1])
@@ -207,7 +212,7 @@ var CompileUtil = {
     var _this = this
     var h = _this.updater['textUpdater']
     var content = expr.replace(/\{\{(.+?)\}\}/g, function () {
-      for (var len = arguments.length, args = new Array(len), key = 0; key < len; key ++) {
+      for (var len = arguments.length, args = new Array(len), key = 0; key < len; key++) {
         args[key] = arguments[key]
       }
       // 给表达式中所有的变量{{}}都加个观察者
@@ -231,6 +236,7 @@ var CompileUtil = {
     }
   }
 }
+
 // 基类
 function Vue(options) {
   this.$el = options.el;
@@ -262,13 +268,14 @@ function Vue(options) {
     new Compiler(this.$el, this)
   }
 }
+
 Vue.prototype.proxy = function (data) {
   for (let key in data) {
     Object.defineProperty(this, key, { // 实现可以通过vm取到对应的数据
       get: function () {
         return data[key] // 进行了转化操作
       },
-      set:function (newVal) { // 设置代理方法
+      set: function (newVal) { // 设置代理方法
         if (data[key] !== newVal) {
           data[key] = newVal
         }
