@@ -8,7 +8,7 @@ export default {
   name: 'Bar',
   methods: {
     show () {
-
+      alert(1)
     }
   }
 }
