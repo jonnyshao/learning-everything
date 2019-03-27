@@ -8,6 +8,9 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  metaInfo: {
+    title: 'APP组件'
+  }
 }
 </script>

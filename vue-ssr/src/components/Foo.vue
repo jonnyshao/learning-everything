@@ -1,5 +1,5 @@
 <template>
   <div class="app">
-    Foo COMPONENTS
+    Foo component {{$store.state.username}}
   </div>
 </template>
