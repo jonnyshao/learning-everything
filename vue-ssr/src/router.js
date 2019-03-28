@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Bar from './components/Bar.vue'
-import VueMeta from 'vue-meta';
-Vue.sue(VueMeta)
+// import Meta from 'vue-meta'
+// Vue.sue(Meta)
 Vue.use(Router)
 export default () => {
   const router = new Router({

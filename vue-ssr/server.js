@@ -4,10 +4,9 @@ const VueServerRenderer = require('vue-server-renderer')
 const fs = require('fs')
 const path = require('path')
 // const serverBundle = fs.readFileSync('./dist/server.bundle.js', 'utf8');
-const serverBundle = require('./dist/vue-ssr-server-bundle');
-const clientManifest = require('./dist/vue-ssr-client-manifest')
+const serverBundle = require(path.resolve(__dirname, './dist/vue-ssr-server-bundle.json'));
+const clientManifest = require(path.resolve(__dirname, './dist/vue-ssr-client-manifest.json'))
 const template = fs.readFileSync('./dist/index.ssr.html', 'utf8')
-
 const render = VueServerRenderer.createBundleRenderer(serverBundle, {
   template,
   clientManifest
@@ -16,8 +15,8 @@ app.get('/', (req, res) => {
   // 把渲染成功的字符串扔给客户端,只是返回一个字符串 并没有vue实现客户端
   const context = {url: req.url}
   render.renderToString(context, function (err, html) {
-    if (err) return res.send(err.stack)
     console.log(err)
+    if (err) return res.send(err.stack)
     res.send(html)
   })
 })

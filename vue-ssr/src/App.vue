@@ -9,8 +9,12 @@
 
 export default {
   name: 'App',
-  metaInfo: {
-    title: 'APP组件'
-  }
+   metaInfo: {
+      title: 'My Example App', // set a title
+      titleTemplate: '%s - Yay!', // title is now "My Example App - Yay!"
+      htmlAttrs: {
+        lang: 'en' // "amp" has no value
+      }
+    }
 }
 </script>
