@@ -12,7 +12,6 @@ module.exports = {
     config.resolve.alias.set('_v', path.resolve(__dirname, 'src/views/'))
   },
   configureWebpack:{ // webpack-merge
-    
   },
   // 第三方插件配置
   pluginOptions: {

@@ -9,7 +9,7 @@ module.exports = merge(base, {
      client: path.resolve(__dirname,  '../src/client-entry.js')
    },
    plugins:[
-    new VueSSRClientPlugin(),
+    new VueSSRClientPlugin({}),
     new HtmlWebpackPlugin({
       filename: 'index.html', // 打包后文件名称
       template: path.resolve(__dirname, '../public/index.html')
