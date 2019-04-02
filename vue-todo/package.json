@@ -10,7 +10,8 @@
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue client/",
     "build": "npm run clean && npm run build:client",
     "clean": "rimraf dist",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client",
+    "practice": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.practice"
   },
   "author": "",
   "license": "ISC",
