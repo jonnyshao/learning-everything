@@ -1,8 +1,6 @@
 const path = require('path')
-const HTMLPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
-const ExtractPlugin = require('extract-text-webpack-plugin')
-const VueLoaderConifg = require('./vue-loader.config')
+const createVueLoaderOptions = require('./vue-loader.config')
+
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
@@ -10,21 +8,21 @@ const config = {
   entry: path.join(__dirname, '../client/index.js'),
   output: {
     filename: 'bundle.[hash:8].js',
-    path: path.join(__dirname, '../dist')
+    path: path.join(__dirname, 'template.html'),
+    publicPath: 'http://127.0.0.1:8000/public/'
   },
   module: {
     rules: [
       {
-        // 修改文件时 eslint实时校验
         test: /\.(vue|js|jsx)$/,
         loader: 'eslint-loader',
         exclude: /node_modules/,
-        enforce: 'pre'  //预处理，如果eslint校验不能过,vue-loader不再解析
+        enforce: 'pre'
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: VueLoaderConifg(isDev)
+        options: createVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
@@ -42,7 +40,7 @@ const config = {
             loader: 'url-loader',
             options: {
               limit: 1024,
-              name: 'resources/[name]-[hash:8].[ext]'
+              name: 'resources/[path][name].[hash:8].[ext]'
             }
           }
         ]

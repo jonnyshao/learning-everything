@@ -11,7 +11,7 @@ const defaultPluins = [
     }
   }),
   new HTMLPlugin({
-    template: path.join(__dirname, 'template.html')
+    template: path.resolve(__dirname, 'template.html')
   })
 ]
 

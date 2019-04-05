@@ -2,8 +2,10 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <todo></todo>
-    <Footer></Footer>
+    <!-- <todo></todo> -->
+    <router-view></router-view>
+    <Footer></Footer> -->
+
   </div>
 </template>
 
@@ -16,7 +18,7 @@ export default {
   components: {
     Header,
     Footer,
-    Todo,
+    Todo
   }
 }
 </script>

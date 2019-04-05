@@ -1,1 +1,1 @@
-import './instance/index'
+import './render/render'
