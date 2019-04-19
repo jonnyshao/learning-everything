@@ -2,14 +2,16 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
+    <p>{{count}}</p>
     <!-- <todo></todo> -->
     <router-view></router-view>
-    <Footer></Footer> -->
+    <Footer></Footer>
 
   </div>
 </template>
 
 <script>
+import {mapGetters, mapMutations, mapState} from 'vuex'
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 import Todo from './views/todo/todo.vue'
@@ -19,6 +21,16 @@ export default {
     Header,
     Footer,
     Todo
+  },
+  mounted () {
+    this.upCount(1000)
+  },
+  computed: {
+    ...mapGetters(['fullName']),
+    ...mapState('app', ['count'])
+  },
+  methods: {
+    ...mapMutations({upCount: 'app/upCount'})
   }
 }
 </script>

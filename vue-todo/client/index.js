@@ -1,11 +1,21 @@
 import Vue from 'vue'
 import App from './app.vue'
 import Router from 'vue-router'
+import Vuex from 'vuex'
 import createRouter from './config/router'
+import createVuex from './store'
 Vue.use(Router)
+Vue.use(Vuex)
+const store = createVuex()
 const router = createRouter()
+store.registerModule('c', {
+  state: {
+    text: 'c'
+  }
+})
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#root')
 
