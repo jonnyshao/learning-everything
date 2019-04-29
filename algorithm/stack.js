@@ -51,4 +51,17 @@ function dec2bin(dec) {
   }
   return binaryStirng;
 }
-console.log(dec2bin(101))
+// console.log(dec2bin(101))
+
+function isPalindrome(str) {
+  var stack = []
+  for (var i = 0; i < str.length; i++) {
+    stack.push(str[i])
+  }
+  var word = ''
+  while (stack.length) {
+    word+= stack.pop()
+  }
+  return word === str
+}
+console.log(isPalindrome('racecar'))

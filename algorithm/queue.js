@@ -43,3 +43,26 @@ function passGame(pepole, num) {
   return queue.front()
 }
 console.log(passGame(['Lily','Carter','Ryan','Jonny','Steve'], 5))
+
+function distribute(nums, queues, n, digit) {
+  for (var i = 0; i < n; i++) {
+    if (digit === 1) {
+      queues[[i] % 10].enqueue(nums[i])
+    } else {
+      queues[Math.floor(nums[i] / 10)].enqueue(nums[i])
+    }
+  }
+}
+function collect(queues, nums) {
+  var i = 0;
+  for (var digit = 0; digit < nums; ++digit) {
+    while (!queues[digit].isEmpty()) {
+      nums[i++] = queues[digit].dequeue();
+    }
+  }
+}
+function dispArray(arr) {
+  for (var i = 0; i < arr.length; ++i) {
+    pus
+  }
+}
