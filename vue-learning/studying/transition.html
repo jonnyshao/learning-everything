@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .fade-enter,.fade-leave-to{
+            opacity: 0;
+        }
+        .fade-enter-active,.fade-leave-active{
+            transition: opacity 3s;
+        }
+        @keyframes bounce-in {
+            0%{
+                transform: scale(0);
+            }
+            50%{
+                transform: scale(1.5);
+            }
+            100%{
+                transform: scale(0);
+            }
+        }
+
+        .active{
+            transform-origin: left center;
+            -webkit-animation: bounce-in 1s;
+            -o-animation: bounce-in 1s;
+            animation: bounce-in 1s;
+        }
+        .leave{
+            transform-origin: left center;
+            animation: bounce-in 1s reverse;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <transition
+        mode="out-in"
+        :duration="5000"
+        name="fade"
+        appear
+        enter-active-class="active fade-enter-active"
+        leave-active-class="leave fade-leave-active"
+        appear-active-class="active"
+        @before-enter="beforeHandleClick"
+    >
+        <div v-if="show">hello Vue
+            <p>1231</p>
+        </div>
+    </transition>
+    <button @click="handleBtnClick">change</button>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data () {
+            return {
+                show:true
+            }
+        },
+        methods: {
+            handleBtnClick () {
+                this.show = !this.show
+            },
+            beforeHandleClick (el) {
+                console.log(el)
+            }
+        }
+    })
+</script>
+</body>
+</html>
