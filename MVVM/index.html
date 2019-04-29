@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="person.name">
+    <!-- <input type="text" v-model="person.name.school.child"> -->
+    {{person.name}}
+    {{person.age}}
+    <div>{{person.name}}</div>
+    <div>{{person.age}}</div>
+    <div>{{getNewName}}</div>
+    <div v-html="msg"></div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+    </ul>
+    <button v-on:click="change">更新操作</button>
+  </div>
+  <script src="MVVM.JS"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        person: {
+          name: 'Jonny',
+          age: 18,
+          school: {
+            child: '田铺小学'
+          }
+        },
+        msg:'<h1>weclome</h1>',
+        shool: {},
+        list: [],
+        age: 10
+      },
+      computed: {
+          getNewName () {
+            return this.person.name + '架构'
+          }
+      },
+      methods: {
+        change () {
+          // debugger
+          this.person.age += 10
+        }
+      }
+    })
+  </script>
+</body>
+</html>

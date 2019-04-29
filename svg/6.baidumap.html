@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+  *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width: 780px;
+      height: 400px;
+      border: 1px solid red;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    </style>
+  <div id="container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" id="svg">
+        <!-- <line x1="50" y1="50" x2="200" y2="300" stroke="black" stroke-width="5"></line>
+        <line x1="200" y1="300" x2="230" y2="300" stroke="black" stroke-width="5"></line>
+        <line x1="230" y1="300" x2="250" y2="200" stroke="black" stroke-width="5"></line> -->
+        <!-- <polyline points="50 50 200 300 230 300 250 200 "  fill="none" stroke="black" stroke-width="5"></polyline> -->
+        <!-- <polygon points="50 50 200 300 230 300 250 200 "  fill="none" stroke="black" stroke-width="5"></polyline> -->
+        <!-- <polyline points="500,500,200,300,230,300,250,200"  fill="none" stroke="black" stroke-width="5"></polyline> -->
+      </svg>
+  </div>
+  <script>
+    var ns = 'http://www.w3.org/2000/svg'
+    var con = document.getElementById('container')
+    var svg = document.getElementById('svg')
+    var polyline = null;
+    var polylinePointsNumber = ''
+    function createTag(tag, attrs) {
+      var curTag = document.createElementNS(ns, tag)
+      for (var attr in attrs) {
+        curTag.setAttribute(attr, attrs[attr])
+      }
+      return curTag
+    }
+    svg.onmousedown = function (e) {
+      var x = e.clientX - con.offsetLeft
+      var y = e.clientY - con.offsetTop
+      if (!polyline) {
+        polyline = createTag('polyline', {fill: 'none', stroke:'red', 'strokeWidth': "3"})
+        svg.appendChild(polyline)
+      }
+      if (!polylinePointsNumber) {
+        polylinePointsNumber = x + ',' + y;
+      } else {
+        polylinePointsNumber += ',' + x + ',' + y;
+      }
+      polyline.setAttribute('points',polylinePointsNumber)
+      var circle = createTag('circle',{'cx': x, cy: y, r: 5, fill: 'white', stroke: 'red', 'stroke-widht': 3 })
+      svg.appendChild(circle)
+      svg.onmousemove = function (e) {
+        if (polyline) {
+          var x = e.clientX - con.offsetLeft
+          var y = e.clientY - con.offsetTop
+          polyline.setAttribute('points',polylinePointsNumber + ',' + x + ','+y)
+        }
+      }
+      svg.oncontextmenu = function () {
+        svg.onmousemove = null
+        return false
+      }
+    }
+  </script>
+</body>
+</html>

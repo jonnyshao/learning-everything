@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" v-split.5.phone="msg">
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 指令默认函数形式 update + bind
+        // inserted
+        // Vue.directive('split', {
+        //     bind (el, bindings, vnode) {
+        //         let ctx = vnode.context;
+        //         el.addEventListener('input', e => {
+        //             let val = e.target.value.slice(0,3) // 输入框中的内容
+        //             ctx[bindings.expression] = val;
+        //             el.value = val;
+        //         })
+        //         el.value = ctx[bindings.expression].slice(0, 3)
+        //     },
+        //     update (el, bindings, vnode) {
+        //         let ctx = vnode.context;
+        //         el.value = ctx[bindings.expression]
+        //     }
+        // })
+        Vue.directive('split', function (el, bindings, vnode) {
+            let ctx = vnode.context;
+            console.log(bindings.rawName)
+            let [,len] = bindings.rawName.split('.');
+            ctx[bindings.expression] = el.value.slice(0, len)
+        })
+        let vm = new Vue({
+            el:'#app',
+            data: {
+                msg: 'a'
+            }
+        })
+    </script>
+</body>
+</html>
