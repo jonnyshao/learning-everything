@@ -6,5 +6,5 @@ var curry = binaryFn => {
   }
 }
 var genericTable = (x,y) => x * y
-// genericTable(2, 2)
+genericTable(2, 2)
 console.log(curry(genericTable)(2)(3))
