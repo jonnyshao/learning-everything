@@ -5,26 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .panel-wrapper{
+            width: 400px;
+            height: 200px;
+        }
+        .panel-con{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .panel{
+            position: absolute;
+            top:0;
+            
+        }
+        .panel-left{
+            width: 30%;
+            background: deeppink;
+            height: 100%;
+        }
+        .panel-right{
+            left: 30%;
+            right: 0;
+            bottom: 0;
+            background: yellowgreen;
+        }
+        .panel-trigger{
+            position: absolute;
+            left: calc(30% - 4px);
+            width: 8px;
+            height: 100%;
+            background: white;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
+    <div class="panel-wrapper">
+        <div class="panel-con">
+            <div class="panel panel-left"></div>
+            <div class="panel-trigger"></div>
+            <div class="panel panel-right"></div>
+        </div>
+    </div>
     <script src="./algorithm/doublyLinkedList.js"></script>
     <script>
-        var list = new DoublyLinkedList()
-            list.append('Lily')
-            list.append('Carter')
-            list.append('Jonny')
-            list.insert(0,'ABC')
-            // list.insert(0, 'Jonny')
-            // console.log(list.get(3))
-            // console.log(list.indexOf('Ryan'))
-            // console.log(list.update(3, 'ABC'))
-            // console.log(list.remove('Ryan'))
-            // console.log(list.backwordString())
-            // list.insert(1,'CBA')
-            // console.log(list.update(1,'Jonny'))
-            // console.log(list)
-            console.log(list.getTail())
-            // alert(list)
+        var trigger = document.querySelector('.panel-trigger');
+        trigger.onmousemove = function (e) {
+            console.log(this.getBoundingClientRect())
+            console.log('getOffset',getOffset(this).left)
+        }
+        
+        function getOffset(ele) {
+            var current = ele.offsetParent;
+            var top = ele.offsetTop;
+            var left = ele.offsetLeft;
+            while (current) {
+                top += current.offsetTop;
+                left += current.offsetLeft;
+                current = current.offsetParent;
+            }
+            return {top, left}
+        }
     </script>
 </body>
 </html>
