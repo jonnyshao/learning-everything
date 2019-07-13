@@ -49,6 +49,33 @@
             <div class="panel panel-right"></div>
         </div>
     </div>
+    <div id="div-input">
+        <input type="text" id="txt_input" value="4"/>
+        <input type="button" id="leftInsert" value="左侧入" />
+        <input type="button" id="rightInsert" value="右侧入" />
+    </div>
+    <div id="container">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+     <script>
+          var inputValue= document.getElementById('txt_input').value;
+              document.getElementById('leftInsert').onclick=function(){
+                  //左侧入
+                  var span = document.createElement('span'); //1、创建元素
+                  span.innerHTML=inputValue;
+                  var container = document.getElementById('container'); //2、找到父级元素
+                   container.insertBefore(span,container.childNodes[0]);//插入到最左边
+              }
+              document.getElementById('rightInsert').onclick=function(){
+                  //右侧入
+                  var span = document.createElement('span'); //1、创建元素
+                  span.innerHTML=inputValue;
+                  var container = document.getElementById('container'); //2、找到父级元素
+                  container.appendChild(span); //3、在末尾中添加元素
+              }
+      </script>
     <script src="./algorithm/doublyLinkedList.js"></script>
     <script>
         var trigger = document.querySelector('.panel-trigger');
